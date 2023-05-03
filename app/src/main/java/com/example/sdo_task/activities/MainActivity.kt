@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView(){
+        // .** initialise recyclerview **//
         binding?.rvList?.layoutManager = LinearLayoutManager(this)
         characterAdpater = RvListAdapter(RvListAdapter.OnClickListener { data ->
             navigateToDetailsScreen(data)
@@ -43,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this,DetailsActivity::class.java)
         intent.putExtra("characterDetails",data as Serializable)
         startActivity(intent)
-
     }
 
     private fun initViewModel(){

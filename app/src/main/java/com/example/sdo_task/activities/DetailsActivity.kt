@@ -22,7 +22,6 @@ class DetailsActivity : AppCompatActivity() {
            super.onBackPressed()
         }
     }
-
     private fun initView(details: EpisodeList) {
         binding?.toolbar?.title = details.name
         binding?.tvName?.text = getString(R.string.name, details.name)

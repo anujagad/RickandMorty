@@ -28,11 +28,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:exported="false"
-            android:name=".activities.DetailsActivity"
-            android:screenOrientation="portrait" />
-
     </application>
 
 </manifest>

@@ -22,6 +22,7 @@ class MainActivityViewModel(application : Application):AndroidViewModel(applicat
         (application as App).getRetroComponent().inject(this)
         liveDatalist = MutableLiveData()
         showProgress = MutableLiveData()
+        doAPICall()
     }
 
     //** return this data to update the recyclerview     **//
@@ -60,22 +61,5 @@ class MainActivityViewModel(application : Application):AndroidViewModel(applicat
                 liveDatalist.postValue(t)
             }
         }
-
-
-       /* val call : Call<Episode>? = mService.getDataFromAPI()
-        call?.enqueue(object :Callback<Episode>{
-            override fun onResponse(call: Call<Episode>, response: Response<Episode>) {
-                if(response.isSuccessful){
-                    liveDatalist.postValue(response.body())
-                }else{
-                    liveDatalist.postValue(null)
-                }
-            }
-
-            override fun onFailure(call: Call<Episode>, t: Throwable) {
-                liveDatalist.postValue(null)
-            }
-          }
-        )*/
     }
 }

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SDO_Task</string>
+    <string name="list_characters">List of Characters</string>
+    <string name="name">Name : %s</string>
+    <string name="gender">Gender : %s</string>
+    <string name="species">Species : %s</string>
+    <string name="status">Status : %s</string>
+    <string name="origin">Origin : %s</string>
+    <string name="appbar">Rick and Morty</string>
+
+</resources>

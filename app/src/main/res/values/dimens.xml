@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources> xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="default_margin">@dimen/base</dimen>
+    <dimen name="tiny">4dp</dimen>
+    <dimen name="xs">8dp</dimen>
+    <dimen name="s">12dp</dimen>
+    <dimen name="base">16dp</dimen>
+    <dimen name="side">20dp</dimen>
+    <dimen name="m">24dp</dimen>
+    <dimen name="l">32dp</dimen>
+    <dimen name="xl">40dp</dimen>
+    <dimen name="xxl">52dp</dimen>
+    <dimen name="xxxl">100dp</dimen>
+    <dimen name="xxxxl">200dp</dimen>
+
+</resources>

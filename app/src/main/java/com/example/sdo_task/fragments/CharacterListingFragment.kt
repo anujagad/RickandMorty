@@ -1,5 +1,6 @@
 package com.example.sdo_task.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +17,16 @@ import com.example.sdo_task.utils.visible
 import com.example.sdo_task.viewModel.MainActivityViewModel
 import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.fragment.findNavController
+import com.example.sdo_task.App
+import javax.inject.Inject
 
 class CharacterListingFragment : Fragment() {
 
     private lateinit var characterAdpater : RvListAdapter
-    private lateinit var viewModel : MainActivityViewModel
+    @Inject
+    lateinit var viewModel : MainActivityViewModel
     private var binding : FragmentListingBinding?=null
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +61,7 @@ class CharacterListingFragment : Fragment() {
     }
 
     private fun initViewModel(){
-        viewModel=  ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        //viewModel=  ViewModelProvider(this).get(MainActivityViewModel::class.java)
         viewModel.getObserver().observe(viewLifecycleOwner) { data ->
             if (data != null) {
                 //** update the adapter and notify **//
@@ -66,7 +71,7 @@ class CharacterListingFragment : Fragment() {
                 //** Showing the snackbar to display the error message **//
                 val snack = Snackbar.make(
                     View(requireContext()),
-                    "Error loading data",
+                    getString(R.string.error),
                     Snackbar.LENGTH_LONG
                 )
                 snack.show()
@@ -95,5 +100,12 @@ class CharacterListingFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity?.applicationContext as App).getRetroComponent().inject(viewModel)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
+
     }
 }

@@ -10,6 +10,7 @@ class App : Application() {
     private lateinit var retroComponent: RetroComponent
     override fun onCreate() {
         super.onCreate()
+
         retroComponent = DaggerRetroComponent.builder()
             .retroModule(RetroModule())
             .build()

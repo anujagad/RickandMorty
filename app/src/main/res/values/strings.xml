@@ -7,5 +7,6 @@
     <string name="status">Status : %s</string>
     <string name="origin">Origin : %s</string>
     <string name="appbar">Rick and Morty</string>
+    <string name="error">Error loading data</string>
 
 </resources>

@@ -17,19 +17,26 @@ import com.example.sdo_task.utils.visible
 import com.example.sdo_task.viewModel.MainActivityViewModel
 import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.fragment.findNavController
-import com.example.sdo_task.App
+import com.example.sdo_task.di.DaggerRetroComponent
+import com.example.sdo_task.di.RetroComponent
+import com.example.sdo_task.di.RetroModule
 import javax.inject.Inject
 
 class CharacterListingFragment : Fragment() {
 
     private lateinit var characterAdpater : RvListAdapter
-    @Inject
-    lateinit var viewModel : MainActivityViewModel
     private var binding : FragmentListingBinding?=null
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    val viewModel by lazy{
+        ViewModelProvider(this,  viewModelFactory)
+            .get(MainActivityViewModel::class.java)
+    }
 
+    private lateinit var fragmentComponent: RetroComponent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,7 +68,6 @@ class CharacterListingFragment : Fragment() {
     }
 
     private fun initViewModel(){
-        //viewModel=  ViewModelProvider(this).get(MainActivityViewModel::class.java)
         viewModel.getObserver().observe(viewLifecycleOwner) { data ->
             if (data != null) {
                 //** update the adapter and notify **//
@@ -104,8 +110,9 @@ class CharacterListingFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity?.applicationContext as App).getRetroComponent().inject(viewModel)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
-
+        fragmentComponent = DaggerRetroComponent.builder()
+            .retroModule(RetroModule())
+            .build()
+        fragmentComponent.inject(this)
     }
 }

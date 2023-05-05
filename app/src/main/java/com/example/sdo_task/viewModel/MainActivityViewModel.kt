@@ -1,10 +1,7 @@
 package com.example.sdo_task.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.sdo_task.App
 import com.example.sdo_task.di.RetroServiceinterface
 import com.example.sdo_task.model.Episode
 import io.reactivex.Observer
@@ -13,15 +10,13 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainActivityViewModel @Inject constructor(application : RetroServiceinterface): ViewModel() {
+class MainActivityViewModel @Inject constructor(private val mService : RetroServiceinterface): ViewModel() {
 
-    @Inject
-    lateinit var mService :RetroServiceinterface
+
     private lateinit var liveDatalist : MutableLiveData<Episode?>
     private lateinit var showProgress : MutableLiveData<Boolean?>
 
     init {
-        //(application as App).getRetroComponent().inject(this)
         liveDatalist = MutableLiveData()
         showProgress = MutableLiveData()
         doAPICall()

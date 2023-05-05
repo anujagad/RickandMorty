@@ -12,6 +12,8 @@ Import the project in Android Studio and build.
   4. Dagger for dependency injection.
   5. MVVM architecture
   6. RXJava
+
+
   
   
   
